@@ -77,6 +77,7 @@ AlgoritmosOrdenacao.prototype.inserirElemento = function(elementosOrdenados, ele
 
 AlgoritmosOrdenacao.prototype.insertionSort = function(elementosOrdenados){
 
-    this.inserirElemento(elementosOrdenados, 3);
+    for(var i = 0; i<elementosOrdenados.length; i++)
+    this.inserirElemento(elementosOrdenados, i);
 
 }
