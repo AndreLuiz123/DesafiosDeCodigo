@@ -97,20 +97,27 @@ AlgoritmosOrdenacao.prototype.reuneArray = function(elementosOrdenados){
 
 }
 
-AlgoritmosOrdenacao.prototype.divideArray = function(elementosOrdenados, pontoInicial, pontoFinal){
+AlgoritmosOrdenacao.prototype.divideArray = function(elementosOrdenados, pontoInicial, pontoFinal, debug){
 
     var novoPontoInicial, novoPontoFinal;
-    novoPontoInicial = Math.floor(pontoInicial);
-    novoPontoFinal = Math.floor(pontoFinal/2);
-    elementosOrdenados[novoPontoInicial].cor = "purple";
-    elementosOrdenados[novoPontoFinal].cor = "purple";    
+    var diferenca;
 
-    if(pontoInicial != pontoFinal)
-        this.divideArray(elementosOrdenados, novoPontoInicial, novoPontoFinal);
+    diferenca = (pontoFinal - pontoInicial)/2;
+
+    novoPontoInicial= Math.floor(pontoFinal - diferenca);
+
+    //novoPontoInicial = Math.floor(pontoFinal/2+1);
+    novoPontoFinal = Math.floor(pontoFinal);
+    elementosOrdenados[novoPontoInicial].cor = "purple";
+    elementosOrdenados[novoPontoFinal].cor = "purple"; 
+    debug++;
+
+    if(pontoFinal != pontoInicial+1 && pontoFinal!=pontoInicial)
+        this.divideArray(elementosOrdenados, novoPontoInicial, novoPontoFinal,debug);
     
 
 }
 
 AlgoritmosOrdenacao.prototype.mergeSort = function(elementosOrdenados){
-    this.divideArray(elementosOrdenados,0,elementosOrdenados.length-1);
+    this.divideArray(elementosOrdenados,0,elementosOrdenados.length-1,0);
 }
