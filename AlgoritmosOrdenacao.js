@@ -96,28 +96,50 @@ AlgoritmosOrdenacao.prototype.reuneArray = function(elementosOrdenados){
 
 
 }
-
+/*
 AlgoritmosOrdenacao.prototype.divideArray = function(elementosOrdenados, pontoInicial, pontoFinal, debug){
 
-    var novoPontoInicial, novoPontoFinal;
+    var novoPontoInicial1, novoPontoFinal1;
+    var novoPontoInicial2, novoPontoFinal2;
     var diferenca;
-
     diferenca = (pontoFinal - pontoInicial)/2;
 
-    novoPontoInicial= Math.floor(pontoFinal - diferenca);
-
-    //novoPontoInicial = Math.floor(pontoFinal/2+1);
-    novoPontoFinal = Math.floor(pontoFinal);
-    elementosOrdenados[novoPontoInicial].cor = "purple";
-    elementosOrdenados[novoPontoFinal].cor = "purple"; 
+    
+    //Primeira Metade
+    novoPontoInicial1 = Math.floor(pontoInicial);
+    novoPontoFinal1 = Math.floor(pontoFinal/2)
+    elementosOrdenados[novoPontoInicial1].cor = "yellow";
+    elementosOrdenados[novoPontoFinal1].cor = "yellow";     
+    //Segunda Metade
+    novoPontoInicial2= Math.floor(pontoFinal - diferenca + 1);
+    novoPontoFinal2 = Math.floor(pontoFinal);
+    elementosOrdenados[novoPontoInicial2].cor = "purple";
+    elementosOrdenados[novoPontoFinal2].cor = "purple"; 
     debug++;
 
     if(pontoFinal != pontoInicial+1 && pontoFinal!=pontoInicial)
-        this.divideArray(elementosOrdenados, novoPontoInicial, novoPontoFinal,debug);
+    {
+        this.divideArray(elementosOrdenados, novoPontoInicial1, novoPontoFinal1,debug);
+        //console.log("Aqui que deu problema");
+        this.divideArray(elementosOrdenados, novoPontoInicial2, novoPontoFinal2,debug);
+    }
     
+}*/
 
+AlgoritmosOrdenacao.prototype.mergeAux = function(array, inicio, fim)
+{
+    //console.log(fim);
+    array[Math.floor(inicio)].cor = "purple";
+    array[Math.floor(fim)].cor = "yellow";
+    if(inicio < fim)
+    {
+        var meio = (inicio+fim)/2;
+        this.mergeAux(array, inicio, meio);
+        this.mergeAux(array, meio+1, fim);
+    }
 }
 
 AlgoritmosOrdenacao.prototype.mergeSort = function(elementosOrdenados){
-    this.divideArray(elementosOrdenados,0,elementosOrdenados.length-1,0);
+    //console.log(elementosOrdenados.length-1);
+    this.mergeAux(elementosOrdenados,0,elementosOrdenados.length-1);
 }
