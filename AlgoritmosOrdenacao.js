@@ -59,7 +59,7 @@ AlgoritmosOrdenacao.prototype.bubbleSortAnimation = function(elementosOrdenados,
         if(passoAnimacao<elementosOrdenados.length)
         this.encontraMaiorTrocaNoFinal(elementosOrdenados, elementosOrdenados.length-passoAnimacao);
        
-    continua = false;
+    //continua = false;
 
    // this.trocarElemetos(elementosOrdenados[1], elementosOrdenados[0]);
 }
@@ -79,5 +79,12 @@ AlgoritmosOrdenacao.prototype.insertionSort = function(elementosOrdenados){
 
     for(var i = 0; i<elementosOrdenados.length; i++)
     this.inserirElemento(elementosOrdenados, i);
+
+}
+
+AlgoritmosOrdenacao.prototype.insertionSortAnimation = function(elementosOrdenados, passoAnimacao){
+
+    if(passoAnimacao<elementosOrdenados.length)
+    this.inserirElemento(elementosOrdenados, passoAnimacao);
 
 }
