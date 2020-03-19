@@ -64,8 +64,8 @@ AlgoritmosOrdenacao.prototype.bubbleSortAnimation = function(elementosOrdenados,
    // this.trocarElemetos(elementosOrdenados[1], elementosOrdenados[0]);
 }
 //Bubble Sort
-//Insertion Sort
 
+//Insertion Sort
 AlgoritmosOrdenacao.prototype.inserirElemento = function(elementosOrdenados, elementoInserido){
 
     while(elementoInserido>=1 && elementosOrdenados[elementoInserido].valor < elementosOrdenados[elementoInserido-1].valor){
@@ -87,4 +87,30 @@ AlgoritmosOrdenacao.prototype.insertionSortAnimation = function(elementosOrdenad
     if(passoAnimacao<elementosOrdenados.length)
     this.inserirElemento(elementosOrdenados, passoAnimacao);
 
+}
+//Insertion Sort
+
+//Merge Sort
+
+AlgoritmosOrdenacao.prototype.reuneArray = function(elementosOrdenados){
+
+
+}
+
+AlgoritmosOrdenacao.prototype.divideArray = function(elementosOrdenados, pontoInicial, pontoFinal){
+
+    var novoPontoInicial, novoPontoFinal;
+    novoPontoInicial = Math.floor(pontoInicial);
+    novoPontoFinal = Math.floor(pontoFinal/2);
+    elementosOrdenados[novoPontoInicial].cor = "purple";
+    elementosOrdenados[novoPontoFinal].cor = "purple";    
+
+    if(pontoInicial != pontoFinal)
+        this.divideArray(elementosOrdenados, novoPontoInicial, novoPontoFinal);
+    
+
+}
+
+AlgoritmosOrdenacao.prototype.mergeSort = function(elementosOrdenados){
+    this.divideArray(elementosOrdenados,0,elementosOrdenados.length-1);
 }
