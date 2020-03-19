@@ -19,6 +19,7 @@ AlgoritmosOrdenacao.prototype.trocarElementos = function(array, elemento1, eleme
     //console.log("Trocou!"); 
 } 
 
+//Bubble Sort
 AlgoritmosOrdenacao.prototype.encontraMaiorTrocaNoFinal = function(elementosOrdenados, quantidadePercorrida){
 
     var indice = 0;
@@ -61,4 +62,21 @@ AlgoritmosOrdenacao.prototype.bubbleSortAnimation = function(elementosOrdenados,
     continua = false;
 
    // this.trocarElemetos(elementosOrdenados[1], elementosOrdenados[0]);
+}
+//Bubble Sort
+//Insertion Sort
+
+AlgoritmosOrdenacao.prototype.inserirElemento = function(elementosOrdenados, elementoInserido){
+
+    while(elementoInserido>=1 && elementosOrdenados[elementoInserido].valor < elementosOrdenados[elementoInserido-1].valor){
+        this.trocarElementos(elementosOrdenados,elementoInserido,elementoInserido-1);
+        elementoInserido--;
+    }    
+
+}
+
+AlgoritmosOrdenacao.prototype.insertionSort = function(elementosOrdenados){
+
+    this.inserirElemento(elementosOrdenados, 3);
+
 }
