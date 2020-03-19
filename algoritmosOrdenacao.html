@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="ElementoOrdenado.js"></script>
+    <script src="AlgoritmosOrdenacao.js"></script>
+    <title>Futebol</title>
+</head>
+<body>
+    <canvas></canvas>
+    <script>
+        
+        var canvas = document.querySelector("canvas");
+        canvas.width = 400;
+        canvas.height = 300;
+        var ctx = canvas.getContext("2d");
+        var continua = true;
+
+        var anterior = 0;
+        var dt = 0;
+
+        var gerenciadorAlgoritmosOrdenacao = new AlgoritmosOrdenacao();
+        var elementosOrdenados = [];
+        
+        for(var i=0; i<40; i++)
+        {
+            var elemento = new ElementoOrdenado({posicao:i, valor:Math.floor(Math.random()*300)});
+            elementosOrdenados.push(elemento);
+        }
+
+        function trocaElemetos(elemento1, elemento2)
+        {
+            elemento1.cor = "red";
+            elemento2.cor = "purple";
+
+            elemento1.posicao = elemento1.posicao + elemento2.posicao;
+            elemento2.posicao = elemento1.posicao - elemento2.posicao;
+            elemento1.posicao = elemento1.posicao - elemento2.posicao;
+        }
+
+        var passosAnimacao = 0;
+        var delay = 0;
+
+        function passo(t)
+        {
+            dt = (t-anterior)/1000;
+
+            ctx.fillStyle = "tan";
+            ctx.fillRect(0,0,canvas.width, canvas.height);
+            
+            for(var i=0; i<40; i++)
+            elementosOrdenados[i].desenhar(ctx, canvas);
+            
+            delay+=dt;
+            if(delay > 1)
+            {
+                gerenciadorAlgoritmosOrdenacao.bubbleSortAnimation(elementosOrdenados,passosAnimacao);
+                passosAnimacao++;
+                delay = 0;
+            }
+
+            if(passosAnimacao>=elementosOrdenados.length)
+                continua = false;
+            //trocaElemetos(elementosOrdenados[1], elementosOrdenados[0]);
+
+            
+            
+            anterior = t;
+            requestAnimationFrame(passo);
+        }
+        
+        
+        if(continua)
+        requestAnimationFrame(passo);
+        
+        console.log("teste");
+
+    </script>
+</body>
+</html>
