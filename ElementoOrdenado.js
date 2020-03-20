@@ -26,6 +26,7 @@ ElementoOrdenado.prototype = new ElementoOrdenado({});
 ElementoOrdenado.constructor = ElementoOrdenado;
 
 ElementoOrdenado.prototype.desenhar = function(ctx, canvas){
+    this.altura = this.valor*-1;
     ctx.fillStyle = this.cor;
     ctx.strokeStyle = "black";
     ctx.fillRect(this.posicao*this.w, canvas.height,this.w, this.altura);

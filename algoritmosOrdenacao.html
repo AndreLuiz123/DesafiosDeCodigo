@@ -24,14 +24,18 @@
         var gerenciadorAlgoritmosOrdenacao = new AlgoritmosOrdenacao();
         var elementosOrdenados = [];
         
-        var numeroElementos = 39;
+        var numeroElementos = 40;
 
-        for(var i=0; i<numeroElementos; i++)
+        for(var i=0; i<numeroElementos/2; i++)
         {
-            var elemento = new ElementoOrdenado({posicao:i, valor:canvas.height - i*5/*Math.floor(Math.random()*300)*/});
+            var elemento = new ElementoOrdenado({cor:"red",posicao:i, valor:i*5/*Math.floor(Math.random()*300)*/});
             elementosOrdenados.push(elemento);
         }
-
+        for(var i=numeroElementos/2; i<numeroElementos; i++)
+        {
+            var elemento = new ElementoOrdenado({cor:"green",posicao:i, valor:(i-numeroElementos/2)*5/*Math.floor(Math.random()*300)*/});
+            elementosOrdenados.push(elemento);
+        }
         function trocaElemetos(elemento1, elemento2)
         {
             elemento1.cor = "red";
@@ -55,8 +59,7 @@
             for(var i=0; i<numeroElementos; i++)
             elementosOrdenados[i].desenhar(ctx, canvas);
             
-            gerenciadorAlgoritmosOrdenacao.mergeSort(elementosOrdenados);
-
+            
             /*delay+=dt;
             if(delay > 1)
             {
@@ -64,24 +67,25 @@
                 passosAnimacao++;
                 delay = 0;
             }*/
-
+            
             if(passosAnimacao>=elementosOrdenados.length)
-                continua = false;
-                
+            continua = false;
+            
             //trocaElemetos(elementosOrdenados[1], elementosOrdenados[0]);
-
+            
             
             
             anterior = t;
             requestAnimationFrame(passo);
         }
         
+        gerenciadorAlgoritmosOrdenacao.mergeSort(elementosOrdenados);
         
         if(continua)
         requestAnimationFrame(passo);
         
         console.log("teste");
-
-    </script>
+        
+        </script>
 </body>
 </html>

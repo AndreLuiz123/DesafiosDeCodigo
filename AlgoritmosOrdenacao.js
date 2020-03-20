@@ -5,8 +5,8 @@ AlgoritmosOrdenacao.prototype = new AlgoritmosOrdenacao({});
 AlgoritmosOrdenacao.constructor = AlgoritmosOrdenacao;
 
 AlgoritmosOrdenacao.prototype.trocarElementos = function(array, elemento1, elemento2){
-    array[elemento1].cor = "red";
-    array[elemento2].cor = "green";
+    //array[elemento1].cor = "red";
+    //array[elemento2].cor = "green";
 
     var elementoAux = array[elemento1].posicao;
     array[elemento1].posicao = array[elemento2].posicao;
@@ -124,57 +124,71 @@ AlgoritmosOrdenacao.prototype.divideArray = function(elementosOrdenados, pontoIn
 
 AlgoritmosOrdenacao.prototype.reuneArray = function(array,inicio1,fim1,inicio2,fim2){
 
-    var i=Math.inicio1, j=inicio2;
+    var i=inicio1, j=inicio2;
     var arrayAux = [];
 
     while(i<=fim1 && j<=fim2)
     {
-        if(array[j]>array[i])
+        if(array[i].valor<array[j].valor)
         {
-            arrayAux.push(i);
+            arrayAux.push(array[i].valor);
             i++;
         }else
         {
-            arrayAux.push(j);
+            arrayAux.push(array[j].valor);
             j++;
         }
     }
 
     while(i<=fim1)
     {
-        arrayAux.push(i);
+        arrayAux.push(array[i].valor);
         i++;
     }
 
     while(j<=fim2)
     {
-        arrayAux.push(j);
+        arrayAux.push(array[j].valor);
         j++;
     }
+    //console.log(arrayAux)
 
     for(var c=0; c<arrayAux.length; c++)
+        console.log(arrayAux[c].valor);
+
+    
+    for(var c=0; c<arrayAux.length; c++)
     {
-        //console.log(arrayAux[c]);
-        this.trocarElementos(array,arrayAux[c],inicio1+c);
+        //this.trocarElementos(array,arrayAux[c],inicio1+c);
+        console.log("Antes: "+c+" "+arrayAux[c]);
+        array[c].valor = arrayAux[c];
+        //console.log("Depois: "+c+" "+arrayAux[c].valor+" "+array[c].valor);
     }
 
 }
 
-AlgoritmosOrdenacao.prototype.mergeAux = function(array, inicio, fim)
+AlgoritmosOrdenacao.prototype.mergeAux = function(array, inicio, fim, debug)
 {
     //console.log(fim);
-    array[Math.floor(inicio)].cor = "purple";
-    array[Math.floor(fim)].cor = "yellow";
-    if(inicio < fim)
+    //var novaCor = "#"+((1<<24)*Math.random()|0).toString(16);
+    //array[Math.floor(inicio)].cor = novaCor;
+    //array[Math.floor(fim)].cor = novaCor;
+    
+    var meio = Math.floor((inicio+fim)/2);
+    //debug++;
+    /*if(inicio < fim)
     {
-        var meio = (inicio+fim)/2;
-        this.mergeAux(array, Math.floor(inicio), Math.floor(meio));
-        this.mergeAux(array, Math.floor(meio)+1, Math.floor(fim));
-        this.reuneArray(array,Math.floor(inicio),Math.floor(meio),Math.floor(meio)+1,Math.floor(fim));
-    }
+        var meio = Math.floor((inicio+fim)/2);
+        this.mergeAux(array, inicio, meio);
+        this.mergeAux(array, meio+1, fim);
+        this.reuneArray(array,inicio,meio,meio+1,fim);
+    }*/
+
+    this.reuneArray(array,0,meio,meio+1,fim);
+
 }
 
 AlgoritmosOrdenacao.prototype.mergeSort = function(elementosOrdenados){
     //console.log(elementosOrdenados.length-1);
-    this.mergeAux(elementosOrdenados,0,elementosOrdenados.length-1);
+    this.mergeAux(elementosOrdenados,0,elementosOrdenados.length-1, 0);
 }
