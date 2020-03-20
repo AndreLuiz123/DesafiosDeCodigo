@@ -92,18 +92,14 @@ AlgoritmosOrdenacao.prototype.insertionSortAnimation = function(elementosOrdenad
 
 //Merge Sort
 
-AlgoritmosOrdenacao.prototype.reuneArray = function(elementosOrdenados){
-
-
-}
 /*
 AlgoritmosOrdenacao.prototype.divideArray = function(elementosOrdenados, pontoInicial, pontoFinal, debug){
-
+    
     var novoPontoInicial1, novoPontoFinal1;
     var novoPontoInicial2, novoPontoFinal2;
     var diferenca;
     diferenca = (pontoFinal - pontoInicial)/2;
-
+    
     
     //Primeira Metade
     novoPontoInicial1 = Math.floor(pontoInicial);
@@ -116,7 +112,7 @@ AlgoritmosOrdenacao.prototype.divideArray = function(elementosOrdenados, pontoIn
     elementosOrdenados[novoPontoInicial2].cor = "purple";
     elementosOrdenados[novoPontoFinal2].cor = "purple"; 
     debug++;
-
+    
     if(pontoFinal != pontoInicial+1 && pontoFinal!=pontoInicial)
     {
         this.divideArray(elementosOrdenados, novoPontoInicial1, novoPontoFinal1,debug);
@@ -126,6 +122,44 @@ AlgoritmosOrdenacao.prototype.divideArray = function(elementosOrdenados, pontoIn
     
 }*/
 
+AlgoritmosOrdenacao.prototype.reuneArray = function(array,inicio1,fim1,inicio2,fim2){
+
+    var i=Math.inicio1, j=inicio2;
+    var arrayAux = [];
+
+    while(i<=fim1 && j<=fim2)
+    {
+        if(array[j]>array[i])
+        {
+            arrayAux.push(i);
+            i++;
+        }else
+        {
+            arrayAux.push(j);
+            j++;
+        }
+    }
+
+    while(i<=fim1)
+    {
+        arrayAux.push(i);
+        i++;
+    }
+
+    while(j<=fim2)
+    {
+        arrayAux.push(j);
+        j++;
+    }
+
+    for(var c=0; c<arrayAux.length; c++)
+    {
+        //console.log(arrayAux[c]);
+        this.trocarElementos(array,arrayAux[c],inicio1+c);
+    }
+
+}
+
 AlgoritmosOrdenacao.prototype.mergeAux = function(array, inicio, fim)
 {
     //console.log(fim);
@@ -134,8 +168,9 @@ AlgoritmosOrdenacao.prototype.mergeAux = function(array, inicio, fim)
     if(inicio < fim)
     {
         var meio = (inicio+fim)/2;
-        this.mergeAux(array, inicio, meio);
-        this.mergeAux(array, meio+1, fim);
+        this.mergeAux(array, Math.floor(inicio), Math.floor(meio));
+        this.mergeAux(array, Math.floor(meio)+1, Math.floor(fim));
+        this.reuneArray(array,Math.floor(inicio),Math.floor(meio),Math.floor(meio)+1,Math.floor(fim));
     }
 }
 
