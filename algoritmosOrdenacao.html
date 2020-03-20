@@ -26,16 +26,16 @@
         
         var numeroElementos = 40;
 
-        for(var i=0; i<numeroElementos/2; i++)
+        for(var i=0; i<numeroElementos; i++)
         {
-            var elemento = new ElementoOrdenado({cor:"red",posicao:i, valor:i*5/*Math.floor(Math.random()*300)*/});
+            var elemento = new ElementoOrdenado({posicao:i, valor:this.canvas.height - i*5/*Math.floor(Math.random()*300)*/});
             elementosOrdenados.push(elemento);
         }
-        for(var i=numeroElementos/2; i<numeroElementos; i++)
+        /*for(var i=numeroElementos/2; i<numeroElementos; i++)
         {
-            var elemento = new ElementoOrdenado({cor:"green",posicao:i, valor:(i-numeroElementos/2)*5/*Math.floor(Math.random()*300)*/});
+            var elemento = new ElementoOrdenado({cor:"green",posicao:i, valor:(i-numeroElementos/2)*5/*Math.floor(Math.random()*300)});
             elementosOrdenados.push(elemento);
-        }
+        }*/
         function trocaElemetos(elemento1, elemento2)
         {
             elemento1.cor = "red";

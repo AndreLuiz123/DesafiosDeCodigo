@@ -153,15 +153,12 @@ AlgoritmosOrdenacao.prototype.reuneArray = function(array,inicio1,fim1,inicio2,f
     }
     //console.log(arrayAux)
 
-    for(var c=0; c<arrayAux.length; c++)
-        console.log(arrayAux[c].valor);
-
     
     for(var c=0; c<arrayAux.length; c++)
     {
         //this.trocarElementos(array,arrayAux[c],inicio1+c);
-        console.log("Antes: "+c+" "+arrayAux[c]);
-        array[c].valor = arrayAux[c];
+        //console.log("Antes: "+c+" "+arrayAux[c]);
+        array[c+inicio1].valor = arrayAux[c];
         //console.log("Depois: "+c+" "+arrayAux[c].valor+" "+array[c].valor);
     }
 
@@ -170,21 +167,29 @@ AlgoritmosOrdenacao.prototype.reuneArray = function(array,inicio1,fim1,inicio2,f
 AlgoritmosOrdenacao.prototype.mergeAux = function(array, inicio, fim, debug)
 {
     //console.log(fim);
-    //var novaCor = "#"+((1<<24)*Math.random()|0).toString(16);
-    //array[Math.floor(inicio)].cor = novaCor;
-    //array[Math.floor(fim)].cor = novaCor;
+    var novaCor = "red";
+    array[Math.floor(inicio)].cor = novaCor;
+    array[Math.floor(fim)].cor = novaCor;
     
     var meio = Math.floor((inicio+fim)/2);
     //debug++;
-    /*if(inicio < fim)
+    console.log("Tam: "+(-inicio+fim));
+    if(inicio < fim)
     {
-        var meio = Math.floor((inicio+fim)/2);
-        this.mergeAux(array, inicio, meio);
-        this.mergeAux(array, meio+1, fim);
+       // var meio = Math.floor((inicio+fim)/2);
+        this.mergeAux(array, inicio, meio,0);
+        this.mergeAux(array, meio+1, fim,0);
         this.reuneArray(array,inicio,meio,meio+1,fim);
-    }*/
+    }
+    else
+    {
+        var novaCor2 = "purple";
+        array[Math.floor(inicio)].cor = novaCor;
+        array[Math.floor(inicio)].cor = novaCor2;
+    }
+       // this.reuneArray(array,inicio,meio,meio+1,fim);
 
-    this.reuneArray(array,0,meio,meio+1,fim);
+    //this.reuneArray(array,0,meio,meio+1,fim);
 
 }
 
