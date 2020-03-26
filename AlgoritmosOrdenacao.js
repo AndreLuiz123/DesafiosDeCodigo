@@ -197,3 +197,8 @@ AlgoritmosOrdenacao.prototype.mergeSort = function(elementosOrdenados){
     //console.log(elementosOrdenados.length-1);
     this.mergeAux(elementosOrdenados,0,elementosOrdenados.length-1, 0);
 }
+
+AlgoritmosOrdenacao.prototype.mergeSortAnimation = function(elementosOrdenados, passoAnimacao){
+    //console.log(elementosOrdenados.length-1);
+    this.mergeAux(elementosOrdenados,0,elementosOrdenados.length-1, passoAnimacao);
+}
